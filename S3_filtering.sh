@@ -1,5 +1,5 @@
 #!/bin/bash
-
+bucket=$1
 parse_times(){
 
 	_time_=$1
@@ -13,7 +13,7 @@ declare -a StringArray=("100000"  "500000" "750000"  "1000000" "2000000")
 for val in ${StringArray[@]};do
 	echo $val
 
-	tmp=$(time  python S3_print_object.py  $val | ./split_ceph >  /dev/null ) 
+	time  python3 S3_print_object.py $bucket   $val | ./split_simple >  /dev/null 
 	#parse_times "$tmp"
 done   
 

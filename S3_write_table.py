@@ -4,7 +4,8 @@ import sys
 
 
 filename   =  sys.argv[1]
-key        = sys.argv[2]
+bucket= sys.argv[2]
+key = sys.argv[3]
 try:
 
     conn = boto.connect_s3(
@@ -24,7 +25,7 @@ try:
 
     print("\nConnecting to bucket")
 
-    bucket = conn.get_bucket("test.jorge.bucket")
+    bucket = conn.get_bucket(bucket)
     key = bucket.new_key(key)
     key.set_contents_from_filename(filename)
 

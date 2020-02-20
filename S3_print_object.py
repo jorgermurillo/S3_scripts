@@ -20,6 +20,8 @@ print(contents)
 
 
 '''
+# S3 Select uses the Payload field
+
 for event in r['Payload']:
     #print(event)
     if 'Records' in event:
@@ -32,5 +34,5 @@ for event in r['Payload']:
         print(statsDetails['BytesScanned'])
         print("Stats details bytesProcessed: ")
         print(statsDetails['BytesProcessed'])
-    
-'''
+''' 
+

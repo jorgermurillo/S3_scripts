@@ -10,24 +10,24 @@ r = s3.select_object_content(
         Bucket=bucket,
         Key=key,
         ExpressionType='SQL',
-        Expression="select * from s3object s where s.\"f1\" like '%1%'",
+        Expression="select * from s3object  where cast(date_1 as timestamp) = cast(\'1996-03-13\' as timestamp) ",
         InputSerialization = {'CSV': {"FileHeaderInfo": "Use"}},
         OutputSerialization = {'CSV': {}},
 )
 #print(r)
 
 for event in r['Payload']:
-    #print(event)
+    print(event)
     
     if 'Records' in event:
         records = event['Records']['Payload'].decode('utf-8')
         print(records)
-    '''
+    
     elif 'Stats' in event:
         statsDetails = event['Stats']['Details']
         print("Stats details bytesScanned: ")
         print(statsDetails['BytesScanned'])
         print("Stats details bytesProcessed: ")
         print(statsDetails['BytesProcessed'])
-    '''
+    
 
